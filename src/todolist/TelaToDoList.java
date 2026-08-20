@@ -28,6 +28,9 @@ public class TelaToDoList extends javax.swing.JFrame {
      */
     public TelaToDoList() {
         initComponents();
+        
+        setLocationRelativeTo(null);
+        
         model = (DefaultTableModel) jTableTarefas.getModel();
     }
 
