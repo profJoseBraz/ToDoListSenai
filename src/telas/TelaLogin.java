@@ -110,7 +110,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextFieldUsuario.getText().equals(usuario)){
+        if (jTextFieldUsuario.getText().equals(usuario) && jPasswordFieldSenha.getText().equals(senha)){
             JOptionPane.showMessageDialog(null, "Usuário e senha corretos! O sistema será iniciado em breve.");
         }else{
             JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");

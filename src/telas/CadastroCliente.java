@@ -181,34 +181,39 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        validacoes();
+        if(!validacoes()){
+            return;
+        }
         
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
         
         System.exit(0);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void validacoes(){
+    private Boolean validacoes(){
         if (jTextFieldNome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome deve ser preenchido.");
             jTextFieldNome.requestFocus();
-            return;
+            return false;
         }
         
         if (jTextFieldCpf.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CPF deve ser preenchido.");
             jTextFieldCpf.requestFocus();
-            return;
+            return false;
         }
         
         if (!jRadioButtonMasculino.isSelected() && !jRadioButtonFeminino.isSelected()){
             JOptionPane.showMessageDialog(null, "Opção de gênero não informada.");
-            return;
+            return false;
         }
         
         if (!jCheckBoxTermos.isSelected()){
             JOptionPane.showMessageDialog(null, "Os termos de utilização do sistema não foram aceitos.");
+            return false;
         }
+        
+        return true;
     }
     
     /**
