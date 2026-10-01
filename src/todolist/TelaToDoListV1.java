@@ -12,9 +12,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jose310361
  */
-public class TelaToDoList extends javax.swing.JFrame {
+public class TelaToDoListV1 extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaToDoList.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaToDoListV1.class.getName());
 
     private static final String CONCLUIDA = "Concluída";
     private static final String NAO_CONCLUIDA = "Não concluída";
@@ -26,7 +26,7 @@ public class TelaToDoList extends javax.swing.JFrame {
     /**
      * Creates new form TelaToDoList
      */
-    public TelaToDoList() {
+    public TelaToDoListV1() {
         initComponents();
         
         setLocationRelativeTo(null);
@@ -292,7 +292,7 @@ public class TelaToDoList extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaToDoList().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaToDoListV1().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
