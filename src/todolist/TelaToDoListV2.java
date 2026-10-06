@@ -4,6 +4,10 @@
  */
 package todolist;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -39,6 +43,10 @@ public class TelaToDoListV2 extends javax.swing.JFrame {
         model.setRowCount(0);
         
         setTitle("Lista de Tarefas V2");
+        
+        carregarTarefas();
+        preencherTabela();
+        atualizarEstatisticas();
     }
 
     /**
@@ -214,6 +222,8 @@ public class TelaToDoListV2 extends javax.swing.JFrame {
         
         tarefas.set(indiceTarefaSelecionada, dados[0] + ";" + CONCLUIDA + ";" + dados[2]);
         
+        salvarTarefa();
+        
         filtrarTabela();
         
         preencherTabela();
@@ -236,6 +246,8 @@ public class TelaToDoListV2 extends javax.swing.JFrame {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         
         tarefas.add(jTextFieldDescricaoTarefa.getText() + ";" + NAO_CONCLUIDA + ";" + dataAtual.format(formato));
+        
+        salvarTarefa();
         
         preencherTabela();
         
@@ -261,11 +273,14 @@ public class TelaToDoListV2 extends javax.swing.JFrame {
         if (opcao == JOptionPane.YES_OPTION){
             tarefas.remove(indiceTarefaSelecionada);
             preencherTabela();
+            salvarTarefa();
         }
         
         filtrarTabela();
         
         preencherTabela();
+        
+        atualizarEstatisticas();
     }//GEN-LAST:event_jButtonRemoverTarefaActionPerformed
 
     private void jComboBoxFiltroStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxFiltroStatusItemStateChanged
@@ -349,18 +364,37 @@ public class TelaToDoListV2 extends javax.swing.JFrame {
     
     private void atualizarEstatisticas(){
         jTextFieldTotal.setText(Integer.toString(tarefas.size()));
+    
+        jTextFieldConcluidas.setText(String.valueOf(retornarTotalConcluidas()));
+        jTextFieldNaoConcluidas.setText(String.valueOf(retornarTotalNaoConcluidas()));
     }
     
-    private void atualizarTotal(int status){
-        switch (status) {
-            case 0:
-                
-                
-                
-                break;
-            default:
-                throw new AssertionError();
+    private int retornarTotalConcluidas(){
+        int quantidadeConcluida = 0;
+        
+        for (String tarefa : tarefas) {
+            String[] dados = tarefa.split(";");
+
+            if (dados[1].equals(CONCLUIDA)) {
+                quantidadeConcluida++;
+            }
         }
+        
+        return quantidadeConcluida;
+    }
+    
+    private int retornarTotalNaoConcluidas(){
+        int quantidadeNaoConcluida = 0;
+        
+        for (String tarefa : tarefas) {
+            String[] dados = tarefa.split(";");
+
+            if (dados[1].equals(NAO_CONCLUIDA)) {
+                quantidadeNaoConcluida++;
+            }
+        }
+        
+        return quantidadeNaoConcluida;
     }
     
     /**
@@ -388,6 +422,41 @@ public class TelaToDoListV2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new TelaToDoListV2().setVisible(true));
     }
 
+    private void salvarTarefa() {
+        try {
+            FileWriter arquivo = new FileWriter("tarefas.txt");
+
+            for (String tarefa : tarefas) {
+                arquivo.write(tarefa + "\n");
+            }
+
+            arquivo.close();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar as tarefas!");
+        }
+    }
+    
+    private void carregarTarefas() {
+        try {
+            BufferedReader arquivo = new BufferedReader(
+                new FileReader("tarefas.txt")
+            );
+
+            String tarefa;
+
+            while ((tarefa = arquivo.readLine()) != null) {
+                tarefas.add(tarefa);
+            }
+
+            arquivo.close();
+
+        } catch (IOException e) {
+            // Arquivo ainda não existe.
+            // Isso acontece na primeira execução.
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarTarefa;
     private javax.swing.JButton jButtonConcluirTarefa;
