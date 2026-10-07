@@ -5,7 +5,7 @@
 package exemplos;
 
 import javax.swing.JOptionPane;
-import todolist.TelaToDoListV1;
+import codigofeitocomalunos.TelaToDoListV1_07102026;
 
 /**
  *
@@ -63,7 +63,7 @@ public class ExemploTela extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane.showMessageDialog(null, "Olá!");
         
-        TelaToDoListV1 telaToDoList = new TelaToDoListV1();
+        TelaToDoListV1_07102026 telaToDoList = new TelaToDoListV1_07102026();
         telaToDoList.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
