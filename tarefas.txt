@@ -1,2 +1,7 @@
-Estudar Java;Não concluída;06/10/2026 14:31
-asfasf;Não concluída;07/10/2026 08:10
+Estudar Java;Não concluída;08/10/2026 10:07
+a;Não concluída;08/10/2026 10:10
+b;Concluída;08/10/2026 10:10
+c;Concluída;08/10/2026 10:10
+d;Concluída;08/10/2026 10:10
+f;Concluída;08/10/2026 10:10
+g;Concluída;08/10/2026 10:10
